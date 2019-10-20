@@ -1,0 +1,43 @@
+package com.my.blog.model.table;
+
+
+@Entity
+@Table(name = "link")
+public class CategoryTable {
+    private int id;
+    private String title;
+    private int is_del;
+    private String time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getIs_del() {
+        return is_del;
+    }
+
+    public void setIs_del(int is_del) {
+        this.is_del = is_del;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+}

@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=UTF-8&serverTimezone=GMT&autoReconnect=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+    database: MYSQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
