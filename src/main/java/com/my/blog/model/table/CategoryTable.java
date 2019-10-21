@@ -5,13 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "blog_category")
-public class CategoryTable {
+public class CategoryTable implements Serializable {
     @Id
     @GeneratedValue(generator = "id")
-    private int id;
+    int id;
     private String title;
     private int is_del;
     private String time;

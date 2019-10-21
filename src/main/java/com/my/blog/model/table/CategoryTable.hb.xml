@@ -10,9 +10,8 @@
         <!--属性id,映射表里的字段id-->
         <id name="id" column="id">
             <!--id的自增长方式采用数据库的本地方式-->
-            <!--<generator class="native"></generator>-->
+            <generator class="native"></generator>
         </id>
-        <property name="title"/>
         <property name="title"/>
         <property name="is_del"/>
         <property name="time"/>

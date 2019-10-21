@@ -60,12 +60,12 @@ public class IndexController {
         session.beginTransaction();
 
         //查询方式get
-        CategoryTable categoryEntity = session.get(CategoryTable.class, 4);
+        CategoryTable categoryEntity = (CategoryTable) session.get(CategoryTable.class, 4);
         System.out.println("get:id=4的title:" + categoryEntity.getTitle());
 
         //查询方式load
-        CategoryTable categoryEntity2 = session.load(CategoryTable.class, 29);
-        System.out.println("load:id=29的title:" + categoryEntity2.getTitle());
+//        CategoryTable categoryEntity2 = session.load(CategoryTable.class, 29);
+//        System.out.println("load:id=29的title:" + categoryEntity2.getTitle());
 
         //提交事物
         session.getTransaction().commit();
