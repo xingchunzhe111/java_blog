@@ -6,9 +6,10 @@ import com.my.blog.model.table.CategoryTable;
 import java.util.List;
 
 public class Category implements CategoryBase {
-    public List<CategoryTable> findAll(){
-//        return CategoryTable[];
-    }
+//    public findAll(){
+//
+//        return CategoryTable;
+//    }
 
 
 }

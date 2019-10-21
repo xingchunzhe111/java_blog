@@ -1,9 +1,16 @@
 package com.my.blog.model.table;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Entity
-@Table(name = "link")
+@Table(name = "blog_category")
 public class CategoryTable {
+    @Id
+    @GeneratedValue(generator = "id")
     private int id;
     private String title;
     private int is_del;
@@ -40,4 +47,6 @@ public class CategoryTable {
     public void setTime(String time) {
         this.time = time;
     }
+
+
 }

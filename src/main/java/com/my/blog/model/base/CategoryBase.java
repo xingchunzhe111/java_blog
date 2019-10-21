@@ -5,5 +5,5 @@ import com.my.blog.model.table.CategoryTable;
 import java.util.List;
 
 public interface CategoryBase {
-    List<CategoryTable> findAll();
+//    List<CategoryTable> findAll();
 }

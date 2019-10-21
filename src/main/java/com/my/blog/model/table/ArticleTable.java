@@ -1,6 +1,15 @@
 package com.my.blog.model.table;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "blog_article")
 public class ArticleTable {
+    @Id
+    @GeneratedValue(generator = "id")
     private int id;
     private String article_title;
     private String article_desc;

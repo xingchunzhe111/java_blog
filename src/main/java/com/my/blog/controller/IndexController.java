@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
+//前台首页控制器
 public class IndexController {
     @GetMapping(value = "/")
     public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page){
@@ -23,6 +24,7 @@ public class IndexController {
 
     @RequestMapping("/list")
     public String list(){
+
         return "list";
     }
 
