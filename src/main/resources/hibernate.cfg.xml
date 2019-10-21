@@ -1,24 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/blog</property>
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.username">root</property>
-    <property name="connection.password">root</property>
-    <property name="current_session_context_class">thread</property>
-    <property name="show_sql">true</property>
-    <property name="hbm2ddl.auto">update</property>
-    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <session-factory>
+        <!-- Database connection settings -->
+        <!--配置访问数据库要用到的驱动，url，账号、密码-->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/blog?characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;useSSL=false</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
 
-    <!--<property name="connection.url"/>-->
-    <!--<property name="connection.driver_class"/>-->
-    <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
-
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
-  </session-factory>
+        <!-- SQL dialect -->
+        <!--使用MYSQL方言,告诉hibernate数据库类型-->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--事务管理方式，即每个线程一个事务-->
+        <property name="current_session_context_class">thread</property>
+        <!--是否在控制台显示执行的sql语句-->
+        <property name="show_sql">true</property>
+        <!--是否会自动更新数据库的表结构,不需要创建表,Hibernate会自动去创建表结构-->
+        <property name="hbm2ddl.auto">update</property>
+        <!--去识别UsersEntity实体类-->
+        <!--<mapping resource="com/my/blog/model/table/CategoryTable.hb.xml"/>-->
+        <mapping class="com.my.blog.model.table.CategoryTable"/>
+    </session-factory>
 </hibernate-configuration>

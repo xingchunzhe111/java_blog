@@ -16,6 +16,16 @@ public class CategoryTable {
     private int is_del;
     private String time;
 
+    @Override
+    public String toString() {
+        return "CategoryTable{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", is_del=" + is_del +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }
