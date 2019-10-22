@@ -1,15 +1,12 @@
 package com.my.blog.model.table;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "blog_article")
 public class ArticleTable {
     @Id
-    @GeneratedValue(generator = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String article_title;
     private String article_desc;
@@ -20,6 +17,22 @@ public class ArticleTable {
     private int created_at;
     private int updated_at;
     private int is_hot;
+
+    @Override
+    public String toString() {
+        return "ArticleTable{" +
+                "id=" + id +
+                ", article_title='" + article_title + '\'' +
+                ", article_desc='" + article_desc + '\'' +
+                ", article_content='" + article_content + '\'' +
+                ", class_id=" + class_id +
+                ", status=" + status +
+                ", views_count=" + views_count +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                ", is_hot=" + is_hot +
+                '}';
+    }
 
     public int getId() {
         return id;
