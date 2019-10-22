@@ -13,7 +13,8 @@
 
         <!-- SQL dialect -->
         <!--使用MYSQL方言,告诉hibernate数据库类型-->
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!--事务管理方式，即每个线程一个事务-->
         <property name="current_session_context_class">thread</property>
         <!--是否在控制台显示执行的sql语句-->

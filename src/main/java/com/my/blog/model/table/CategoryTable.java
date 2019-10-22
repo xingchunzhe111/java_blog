@@ -1,20 +1,18 @@
 package com.my.blog.model.table;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "blog_category")
 public class CategoryTable implements Serializable {
     @Id
-    @GeneratedValue(generator = "id")
-    int id;
+//    @GeneratedValue(generator = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     private String title;
-    private int is_del;
+    private Integer is_del;
     private String time;
 
     @Override
@@ -31,9 +29,9 @@ public class CategoryTable implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getTitle() {
         return title;

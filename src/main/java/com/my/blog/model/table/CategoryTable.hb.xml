@@ -8,12 +8,11 @@
 <hibernate-mapping package="com.my.blog.model.table">
     <class name="CategoryTable" table="blog_category">
         <!--属性id,映射表里的字段id-->
-        <id name="id" column="id">
-            <!--id的自增长方式采用数据库的本地方式-->
-            <generator class="native"></generator>
-        </id>
-        <property name="title"/>
-        <property name="is_del"/>
-        <property name="time"/>
+        <!--<id name="id" type="java.lang.Integer" column="id">-->
+            <!--<generator class="native"></generator>&lt;!&ndash; class指的表的主键对应生成的类 (increment自增) &ndash;&gt;-->
+        <!--</id>-->
+        <property name="title"  type="java.lang.String"  column="title"></property>
+        <property name="is_del" type="java.lang.Integer" column="is_del"></property>
+        <property name="time"   type="java.lang.String"  column="time"></property>
     </class>
 </hibernate-mapping>
