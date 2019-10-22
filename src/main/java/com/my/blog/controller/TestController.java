@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 //前台首页控制器
 public class TestController {
-    @GetMapping(value = "/")
+    @GetMapping(value = "/test")
     public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page){
         //顶部栏目
 
@@ -28,18 +28,18 @@ public class TestController {
         return "index";
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/test/list")
     public String list(){
         return "list";
     }
 
-    @RequestMapping("/detail")
+    @RequestMapping("/test/detail")
     public String detail(){
         return "detail";
     }
 
     @ResponseBody
-    @RequestMapping("/get-data")
+    @RequestMapping("/test/get-data")
     public CategoryTable getData(HttpServletRequest request,@RequestParam(name = "id", required = false, defaultValue = "0")int id){
         CategoryTable cate = new CategoryTable();
         cate.setTitle("title");
@@ -50,7 +50,7 @@ public class TestController {
         return cate;
     }
 
-    @RequestMapping("/select")
+    @RequestMapping("/test/select")
     public void selectData(){
         //获取SessionFactory
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -77,7 +77,7 @@ public class TestController {
         sessionFactory.close();
     }
     @ResponseBody
-    @RequestMapping("/insert")
+    @RequestMapping("/test/insert")
     public CategoryTable insertData(){
         //获取SessionFactory
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -103,7 +103,7 @@ public class TestController {
         return categoryEntity;
     }
     @ResponseBody
-    @RequestMapping("/update")
+    @RequestMapping("/test/update")
     public CategoryTable updateData(){
         //获取SessionFactory
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -132,7 +132,7 @@ public class TestController {
     }
 
     @ResponseBody
-    @RequestMapping("/del")
+    @RequestMapping("/test/del")
     public CategoryTable delData(){
         //获取SessionFactory
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

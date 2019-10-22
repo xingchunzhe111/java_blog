@@ -20,10 +20,7 @@ public class IndexController {
     @GetMapping(value = "/")
     public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page){
         //顶部栏目
-
         //左边的倒序的文章列表
-
-        //右边的文章分类
         System.out.println(page);
         return "index";
     }
