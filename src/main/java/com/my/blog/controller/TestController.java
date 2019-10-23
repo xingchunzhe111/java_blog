@@ -1,17 +1,25 @@
 package com.my.blog.controller;
 
 import com.my.blog.model.base.CategoryBase;
+import com.my.blog.model.table.ArticleTable;
 import com.my.blog.model.table.CategoryTable;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -19,10 +27,61 @@ import javax.servlet.http.HttpServletRequest;
 public class TestController {
     @GetMapping(value = "/test")
     public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page){
+        //Configuration cfg = new Configuration();
+        //cfg.configure("hibernate.cfg.xml");
+        //cfg.addAnnotatedClass(ArticleTable.class);
+
         //顶部栏目
+        //获取SessionFactory
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //通过SessionFactory 获取 Session
+        Session session = sessionFactory.openSession();
 
-        //左边的倒序的文章列表
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<ArticleTable> criteria = builder.createQuery(ArticleTable.class);
 
+        Root<ArticleTable> employeeRoot = criteria.from(ArticleTable.class);
+        criteria.select(employeeRoot);
+        criteria.where(builder.equal(employeeRoot.get("article_title"), "nihao"));
+        //criteria.orderBy(Order.desc("id"));
+
+
+        //栏目列表
+        //获取SessionFactory
+        //SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        ////通过SessionFactory 获取 Session
+        //Session session = sessionFactory.openSession();
+        //
+        //CriteriaBuilder builder = session.getCriteriaBuilder();
+        //CriteriaQuery<ArticleTable> criteria = builder.createQuery(ArticleTable.class);
+        //
+        //Root<ArticleTable> employeeRoot = criteria.from(ArticleTable.class);
+        //criteria.select(employeeRoot);
+        //criteria.where(builder.equal(employeeRoot.get("article_title"), "nihao"));
+        //
+        //List<ArticleTable> employeeList = session.createQuery(criteria).getResultList();
+        //
+        //List list = session.createCriteria(CategoryTable.class)
+        //        .add(Restrictions.between("age",new Integer(20),new Integer(30)).list();
+        //
+        ////分类列表
+        //int pageSize = 10;
+        //int offset = (page-1)*pageSize;
+        //int yes = 0;
+        //CategoryTable crit = session.createCriteria(CategoryTable.class).add(Restrictions.eq("title","123"));
+        //((Criteria) crit).addOrder(Order.desc("id"));
+        //((Criteria) crit).setFirstResult(offset);
+        //((Criteria) crit).setFirstResult(pageSize);
+        //List list = ((Criteria) crit).list();
+
+        //List cats = session.createCriteria(CategoryTable.class)
+        //        .add( Restrictions.like("name", "Fritz%") )
+        //        .add( Restrictions.or(
+        //                Restrictions.eq( "age", 0 ),
+        //                Restrictions.isNull("age")
+        //        ) )
+        //        .add(Restrictions.eq("is_del",1))
+        //        .list();
         //右边的文章分类
         System.out.println(page);
         return "index";

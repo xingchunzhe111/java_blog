@@ -6,13 +6,21 @@
     用于映射UsersEntity实体类,对应数据库中users表
 -->
 <hibernate-mapping package="com.my.blog.model.table">
-    <class name="CategoryTable" table="blog_article">
+    <class name="ArticleTable" table="blog_article">
         <!--属性id,映射表里的字段id-->
         <id name="id" type="java.lang.Integer" column="id">
             <generator class="native"></generator><!-- class指的表的主键对应生成的类 (increment自增) -->
         </id>
-        <property name="title"  type="java.lang.String"  column="title"></property>
-        <property name="is_del" type="java.lang.Integer" column="is_del"></property>
-        <property name="time"   type="java.lang.String"  column="time"></property>
+        <property name="article_title"  type="java.lang.String"  column="article_title"></property>
+        <property name="article_desc" type="java.lang.Integer" column="article_desc"></property>
+        <property name="article_content"   type="java.lang.String"  column="article_content"></property>
+        <property name="cid"   type="java.lang.Integer"  column="cid"></property>
+        <property name="status"   type="java.lang.Integer"  column="status"></property>
+        <property name="views_count"   type="java.lang.Integer"  column="views_count"></property>
+        <property name="created_at"   type="java.lang.String"  column="created_at"></property>
+        <property name="updated_at"   type="java.lang.Integer"  column="updated_at"></property>
+        <property name="is_hot"   type="java.lang.Integer"  column="is_hot"></property>
+        <property name="tags_id"   type="java.lang.Integer"  column="tags_id"></property>
+        <property name="author"   type="java.lang.String"  column="author"></property>
     </class>
 </hibernate-mapping>

@@ -1,22 +1,26 @@
 package com.my.blog.model.table;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "blog_article")
-public class ArticleTable {
+public class ArticleTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String article_title;
     private String article_desc;
     private String article_content;
-    private int class_id;
+    private String author;
+    private int cid;
     private int status;
     private int views_count;
-    private int created_at;
+    private String created_at;
     private int updated_at;
     private int is_hot;
+    private int tags_id;
+
 
     @Override
     public String toString() {
@@ -25,13 +29,31 @@ public class ArticleTable {
                 ", article_title='" + article_title + '\'' +
                 ", article_desc='" + article_desc + '\'' +
                 ", article_content='" + article_content + '\'' +
-                ", class_id=" + class_id +
+                ", author='" + author + '\'' +
+                ", cid=" + cid +
                 ", status=" + status +
                 ", views_count=" + views_count +
                 ", created_at=" + created_at +
                 ", updated_at=" + updated_at +
                 ", is_hot=" + is_hot +
+                ", tags_id=" + tags_id +
                 '}';
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getTags_id() {
+        return tags_id;
+    }
+
+    public void setTags_id(int tags_id) {
+        this.tags_id = tags_id;
     }
 
     public int getId() {
@@ -66,12 +88,12 @@ public class ArticleTable {
         this.article_content = article_content;
     }
 
-    public int getClass_id() {
-        return class_id;
+    public int getCid() {
+        return cid;
     }
 
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
+    public void setCid(int class_id) {
+        this.cid = class_id;
     }
 
     public int getStatus() {
@@ -90,11 +112,11 @@ public class ArticleTable {
         this.views_count = views_count;
     }
 
-    public int getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(int created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -113,4 +135,6 @@ public class ArticleTable {
     public void setIs_hot(int is_hot) {
         this.is_hot = is_hot;
     }
+
+
 }

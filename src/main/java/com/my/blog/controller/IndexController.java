@@ -1,47 +1,58 @@
 package com.my.blog.controller;
 
-import com.my.blog.model.base.CategoryBase;
 import com.my.blog.model.table.ArticleTable;
 import com.my.blog.model.table.CategoryTable;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.mapping.List;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
 
 @Controller
 //前台首页控制器
 public class IndexController {
     @GetMapping(value = "/")
-    public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page){
-        //顶部栏目
-        //获取SessionFactory
+    public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page,Model model){
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         //通过SessionFactory 获取 Session
         Session session = sessionFactory.openSession();
+        try{
+            //栏目列表
+            int pageSize = 10;
+            int offset = (page-1)*pageSize;
+            List catList = session.createCriteria(CategoryTable.class)
+                    .add(Restrictions.eq("is_del",0))
+                    .list();
 
+            //文章列表
+            List articleList = session.createCriteria(ArticleTable.class)
+                    .add(Restrictions.eq("status",1))
+                    .setFirstResult(offset)
+                    .setMaxResults(pageSize)
+                    .list();
 
-        Criteria crit = session.createCriteria(ArticleTable.class);
-        crit.setMaxResults(50);
-        List cats = crit.list();
-
-
-        //左边的倒序的文章列表
-        System.out.println(page);
+            model.addAttribute("catList", catList);
+            model.addAttribute("articleList", articleList);
+            System.out.println("offset:"+offset);
+            System.out.println("pageSize:"+pageSize);
+            System.out.println(catList);
+            System.out.println(articleList);
+        }finally {
+            session.close();
+        }
         return "index";
     }
 
     @RequestMapping("/list")
-    public String list(){
+    public String list(Model model){
         return "list";
     }
 

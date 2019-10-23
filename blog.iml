@@ -27,7 +27,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Entities" value="c8667ead-3e68-43a1-9282-721a35d5495b" />
+          <factory-entry name="Entities" value="40ed966d-89ec-4c06-a956-1e90c83ed5cb" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/META-INF/persistence.xml" />
       </configuration>
