@@ -132,16 +132,12 @@
                 </dd>
             </dl>
             <dl class="function" id="LuSongSong_hotmonth">
-                <dt class="function_t">7天热门</dt>
+                <dt class="function_t">热门文章</dt>
                 <dd class="function_c">
                     <ul>
-                        <li><a href="https://lusongsong.com/blog/post/12341.html">百度疑似取消熊掌号小图标</a></li>
-                        <li><a href="https://lusongsong.com/reed/12339.html">网站源码项目分享</a></li>
-                        <li><a href="https://lusongsong.com/blog/post/12337.html">淘宝卖家投诉微博大v数据造假</a></li>
-                        <li><a href="https://lusongsong.com/reed/12335.html">关于劫持：JS劫持手法</a></li>
-                        <li><a href="https://lusongsong.com/reed/12331.html">如何通过微博搜索排名引流</a></li>
-                        <li><a href="https://lusongsong.com/reed/12327.html">2019年裸辞的都如何了</a></li>
-                        <li><a href="https://lusongsong.com/blog/post/12326.html">淘集集因欠商家货款面临“暴雷”</a></li>
+                        <c:forEach items="${hotList}" var="hot">
+                            <li><a href="/list/detail/${hot.id}">${hot.article_title}</a></li>
+                        </c:forEach>
                     </ul>
                 </dd>
             </dl>
@@ -160,43 +156,12 @@
                 </dd>
             </dl>
             <dl class="function" id="kandydigguplog">
-                <dt class="function_t">点赞最多</dt>
+                <dt class="function_t">浏览最多</dt>
                 <dd class="function_c">
                     <ul>
-                        <li><a href="https://lusongsong.com/info/post/1019.html" title="彩票内幕，骗了很多中国人">彩票内幕，骗了很多中国人 <span
-                                class="kandyDiggUp">5175</span></a></li>
-                        <li><a href="https://lusongsong.com/blog/post/8082.html" title="微信应用号公测将引爆.cx域名抢注潮">微信应用号公测将引爆.cx域名抢注潮
-                            <span class="kandyDiggUp">3201</span></a></li>
-                        <li><a href="https://lusongsong.com/reed/1145.html" title="揭穿微信朋友圈卖东西月入几万的真相">揭穿微信朋友圈卖东西月入几万的真相
-                            <span class="kandyDiggUp">2462</span></a></li>
-                        <li><a href="https://lusongsong.com/info/post/913.html" title="揭秘淘宝买衣服潜规则,你们吃亏吃大了!">揭秘淘宝买衣服潜规则,你们吃亏吃大了!
-                            <span class="kandyDiggUp">1892</span></a></li>
-                        <li><a href="https://lusongsong.com/reed/1253.html" title="微商48种加人方法">微商48种加人方法 <span
-                                class="kandyDiggUp">1838</span></a></li>
-                        <li><a href="https://lusongsong.com/info/post/853.html" title="快速增加微信好友的十大方法">快速增加微信好友的十大方法
-                            <span class="kandyDiggUp">1292</span></a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl class="function" id="divLinkage">
-                <dt class="function_t">友情链接</dt>
-                <dd class="function_c">
-                    <ul>
-                        <li><a href="http://www.xinnet.com/" target="_blank">虚拟主机</a></li>
-                        <li><a href="https://xm.admin5.com/" target="_blank">A5创业项目</a></li>
-                    </ul>
-                </dd>
-            </dl>
-            <dl class="function" id="divStatistics">
-                <dt class="function_t">站点信息</dt>
-                <dd class="function_c">
-                    <ul>
-                        <li>文章总数:12172</li>
-                        <li>页面总数:7</li>
-                        <li>分类总数:16</li>
-                        <li>标签总数:172</li>
-                        <li>评论总数:679927</li>
-                        <li>浏览总数:129055848</li>
+                    <c:forEach items="${viewList}" var="view">
+                    <li><a href="/list/detail/${view.id}" title="${view.article_title}">${view.article_title}<span class="kandyDiggUp">${view.views_count}</span></a></li>
+                    </c:forEach>
                     </ul>
                 </dd>
             </dl>
@@ -206,12 +171,9 @@
                         <dt class="function_t">最新文章</dt>
                         <dd class="function_c">
                             <ul>
-                                <li><a href="https://lusongsong.com/blog/post/12358.html">大数据公司接连被查 爬虫行业面临大整顿</a></li>
-                                <li><a href="https://lusongsong.com/info/post/12357.html">IP已经过气了？关于IP的4个误解 </a></li>
-                                <li><a href="https://lusongsong.com/yulu/t/12356.html">你适合做什么样的商业?</a></li>
-                                <li><a href="https://lusongsong.com/reed/12355.html">掌握今日头条推荐机制，轻松获取高推荐高播放量</a></li>
-                                <li><a href="https://lusongsong.com/blog/post/12353.html">网友爆料：加盟行业网站关键词猛降!</a></li>
-                                <li><a href="https://lusongsong.com/info/post/12354.html">渔夫和魔鬼</a></li>
+                                <c:forEach items="${updateList}" var="update">
+                                <li><a href="/list/detail/${update.id}">${update.article_title}</a></li>
+                                </c:forEach>
                             </ul>
                         </dd>
                     </dl>
@@ -224,6 +186,15 @@
                     </dl>
                 </div>
             </div>
+            <dl class="function" id="divLinkage">
+                <dt class="function_t">友情链接</dt>
+                <dd class="function_c">
+                    <ul>
+                        <li><a href="http://www.xinnet.com/" target="_blank">虚拟主机</a></li>
+                        <li><a href="https://xm.admin5.com/" target="_blank">A5创业项目</a></li>
+                    </ul>
+                </dd>
+            </dl>
         </div>
     </div>
     <div class="footer"> Copyright © 2009-2019 卢松松博客 版权所有 |
