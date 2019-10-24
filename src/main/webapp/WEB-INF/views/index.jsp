@@ -34,19 +34,6 @@
             </li>
             </c:forEach>
         </ul>
-
-        <script>
-            (function () {
-                var s = "_" + Math.random().toString(36).slice(2);
-                document.write('<div id="' + s + '"></div>');
-                (window.slotbydup = window.slotbydup || []).push({
-                    id: '2660075',
-                    container: s,
-                    size: '0,0',
-                    display: 'inlay-fix'
-                });
-            })();
-        </script>
     </div>
     <div class="content">
         <div class="nbcontent">
@@ -63,8 +50,6 @@
             </div>
 
             <jsp:useBean id="dateValue" class="java.util.Date"/>
-
-
             <c:forEach items="${articleList}" var="articleList">
                 <div class="post">
                     <h2>
@@ -80,33 +65,34 @@
                 </div>
             </c:forEach>
 
-            <div class="pagenavi"><a href="https://lusongsong.com/"><span class="page">‹‹</span></a> <span
-                    class="page now-page">1</span> <a href="https://lusongsong.com/default_2.html"><span
-                    class="page">2</span></a> <a href="https://lusongsong.com/default_3.html"><span
-                    class="page">3</span></a> <a href="https://lusongsong.com/default_4.html"><span
-                    class="page">4</span></a> <a href="https://lusongsong.com/default_5.html"><span
-                    class="page">5</span></a> <a href="https://lusongsong.com/default_6.html"><span
-                    class="page">6</span></a> <a href="https://lusongsong.com/default_7.html"><span
-                    class="page">7</span></a> <a href="https://lusongsong.com/default_8.html"><span
-                    class="page">8</span></a> <a href="https://lusongsong.com/default_9.html"><span
-                    class="page">9</span></a> <a href="https://lusongsong.com/default_10.html"><span
-                    class="page">10</span></a> <a href="https://lusongsong.com/default_2.html"><span
-                    class="page">›</span></a> <a href="https://lusongsong.com/default_760.html"><span
-                    class="page">››</span></a>
+            <div class="pagenavi">
+                <c:choose>
+                    <c:when test="${page == '1'}">
+                        <a href="javascript:;">
+                            <span class="page">‹‹</span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/?page=${page-1}">
+                            <span class="page">‹‹</span>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
+                <span class="page now-page">${page}</span>
+                <c:choose>
+                    <c:when test="${page < maxPage}">
+                        <a href="/?page=${page+1}">
+                            <span class="page">››</span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="javascript:;">
+                            <span class="page">››</span>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="ads-banner">
-                <script>
-                    (function () {
-                        var s = "_" + Math.random().toString(36).slice(2);
-                        document.write('<div id="' + s + '"></div>');
-                        (window.slotbydup = window.slotbydup || []).push({
-                            id: '5940994',
-                            container: s,
-                            size: '760,60',
-                            display: 'inlay-fix'
-                        });
-                    })();
-                </script>
             </div>
         </div>
     </div>
@@ -131,31 +117,7 @@
                 <dt style="display:none;"></dt>
                 <dd class="function_c">
                     <div>
-                        <script>
-                            (function () {
-                                var s = "_" + Math.random().toString(36).slice(2);
-                                document.write('<div id="' + s + '"></div>');
-                                (window.slotbydup = window.slotbydup || []).push({
-                                    id: '5940983',
-                                    container: s,
-                                    size: '300,100',
-                                    display: 'inlay-fix'
-                                });
-                            })();
-                        </script>
                         <div class="clear"></div>
-                        <script>
-                            (function () {
-                                var s = "_" + Math.random().toString(36).slice(2);
-                                document.write('<div id="' + s + '"></div>');
-                                (window.slotbydup = window.slotbydup || []).push({
-                                    id: '5940985',
-                                    container: s,
-                                    size: '300,100',
-                                    display: 'inlay-fix'
-                                });
-                            })();
-                        </script>
                     </div>
                 </dd>
             </dl>
@@ -166,18 +128,6 @@
                 <dt style="display:none;"></dt>
                 <dd class="function_c">
                     <div>
-                        <script>
-                            (function () {
-                                var s = "_" + Math.random().toString(36).slice(2);
-                                document.write('<div id="' + s + '"></div>');
-                                (window.slotbydup = window.slotbydup || []).push({
-                                    id: '5940988',
-                                    container: s,
-                                    size: '300,120',
-                                    display: 'inlay-fix'
-                                });
-                            })();
-                        </script>
                     </div>
                 </dd>
             </dl>
@@ -199,18 +149,6 @@
                 <dt style="display:none;"></dt>
                 <dd class="function_c">
                     <div>
-                        <script>
-                            (function () {
-                                var s = "_" + Math.random().toString(36).slice(2);
-                                document.write('<div id="' + s + '"></div>');
-                                (window.slotbydup = window.slotbydup || []).push({
-                                    id: '5940990',
-                                    container: s,
-                                    size: '300,120',
-                                    display: 'inlay-fix'
-                                });
-                            })();
-                        </script>
                     </div>
                 </dd>
             </dl>
@@ -218,18 +156,6 @@
                 <dt style="display:none;"></dt>
                 <dd class="function_c">
                     <div>
-                        <script>
-                            (function () {
-                                var s = "_" + Math.random().toString(36).slice(2);
-                                document.write('<div id="' + s + '"></div>');
-                                (window.slotbydup = window.slotbydup || []).push({
-                                    id: '5940992',
-                                    container: s,
-                                    size: '300,120',
-                                    display: 'inlay-fix'
-                                });
-                            })();
-                        </script>
                     </div>
                 </dd>
             </dl>
@@ -293,51 +219,11 @@
                         <dt style="display:none;"></dt>
                         <dd class="function_c">
                             <div>
-                                <script>
-                                    (function () {
-                                        var s = "_" + Math.random().toString(36).slice(2);
-                                        document.write('<div id="' + s + '"></div>');
-                                        (window.slotbydup = window.slotbydup || []).push({
-                                            id: '2398781',
-                                            container: s,
-                                            size: '300,250',
-                                            display: 'inlay-fix'
-                                        });
-                                    })();
-                                </script>
                             </div>
                         </dd>
                     </dl>
                 </div>
             </div>
-            <script type="text/javascript">
-                //侧栏跟随
-                (function () {
-                    var oDiv = document.getElementById("float");
-                    var H = 0,
-                        iE6;
-                    var Y = oDiv;
-                    while (Y) {
-                        H += Y.offsetTop;
-                        Y = Y.offsetParent
-                    }
-                    ;
-                    iE6 = window.ActiveXObject && !window.XMLHttpRequest;
-                    if (!iE6) {
-                        window.onscroll = function () {
-                            var s = document.body.scrollTop || document.documentElement.scrollTop;
-                            if (s > H) {
-                                oDiv.className = "div1 div2";
-                                if (iE6) {
-                                    oDiv.style.top = (s - H) + "px";
-                                }
-                            } else {
-                                oDiv.className = "div1";
-                            }
-                        };
-                    }
-                })();
-            </script>
         </div>
     </div>
     <div class="footer"> Copyright © 2009-2019 卢松松博客 版权所有 |
