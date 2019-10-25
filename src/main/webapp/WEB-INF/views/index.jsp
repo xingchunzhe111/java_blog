@@ -65,33 +65,36 @@
                 </div>
             </c:forEach>
 
-            <div class="pagenavi">
-                <c:choose>
-                    <c:when test="${page == '1'}">
-                        <a href="javascript:;">
-                            <span class="page">‹‹</span>
-                        </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/?page=${page-1}">
-                            <span class="page">‹‹</span>
-                        </a>
-                    </c:otherwise>
-                </c:choose>
-                <span class="page now-page">${page}</span>
-                <c:choose>
-                    <c:when test="${page < maxPage}">
-                        <a href="/?page=${page+1}">
-                            <span class="page">››</span>
-                        </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="javascript:;">
-                            <span class="page">››</span>
-                        </a>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+            <c:if test="${count>0}"  >
+                <div class="pagenavi">
+                    <c:choose>
+                        <c:when test="${page == '1'}">
+                            <a href="javascript:;">
+                                <span class="page">‹‹</span>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/?page=${page-1}">
+                                <span class="page">‹‹</span>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                    <span class="page now-page">${page}</span>
+                    <c:choose>
+                        <c:when test="${page < maxPage}">
+                            <a href="/?page=${page+1}">
+                                <span class="page">››</span>
+                            </a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="javascript:;">
+                                <span class="page">››</span>
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </c:if>
+
             <div class="ads-banner">
             </div>
         </div>

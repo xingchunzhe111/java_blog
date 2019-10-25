@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import java.util.List;
 //前台首页控制器
 public class IndexController {
     @GetMapping(value = "/")
-    public String index(HttpServletRequest request,@RequestParam(name = "page", required = false, defaultValue = "1")int page,Model model){
+    public String index(@RequestParam(name = "page", required = false, defaultValue = "1")int page,Model model){
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         //通过SessionFactory 获取 Session
         Session session = sessionFactory.openSession();
@@ -80,15 +81,69 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/list")
-    public String list(Model model){
+    //栏目ID
+    @RequestMapping("/list/{cid}")
+    public String list(HttpServletRequest request, Model model, @RequestParam(name = "page", required = false, defaultValue = "1")int page, @PathVariable("cid") int cid){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //通过SessionFactory 获取 Session
+        Session session = sessionFactory.openSession();
+        try{
+            List catList = session.createCriteria(CategoryTable.class)
+                    .add(Restrictions.eq("is_del",0))
+                    .list();
 
+            //查某一个栏目下面的所有文章
+            int pageSize = 10;
+            int offset = (page-1)*pageSize;
+            if(cid==0){
+                model.addAttribute("errMsg", "缺少参数");
+                return "common/error";
+            }
+            List articleList = session.createCriteria(ArticleTable.class)
+                    .add(Restrictions.eq("cid",cid))
+                    .setFirstResult(offset)
+                    .setMaxResults(pageSize)
+                    .list();
 
+            Query query = session.createQuery("select count(*) from ArticleTable where cid ="+Integer.toString(cid)+"");
+            Long  count = (Long) query.getSingleResult();
+
+            int l = (int) (count/pageSize);
+            int maxPage = l==0 ? 1 : l+1;
+
+            model.addAttribute("catList", catList);
+            model.addAttribute("articleList", articleList);
+            model.addAttribute("maxPage", maxPage);
+            model.addAttribute("page", page);
+            model.addAttribute("count", count);
+        }finally {
+            session.close();
+        }
         return "list";
     }
 
-    @RequestMapping("/detail")
-    public String detail(){
+    @RequestMapping("/list/detail/{id}")
+    public String detail(Model model, @PathVariable("id") int id){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //通过SessionFactory 获取 Session
+        Session session = sessionFactory.openSession();
+        try{
+            List catList = session.createCriteria(CategoryTable.class)
+                    .add(Restrictions.eq("is_del",0))
+                    .list();
+            if(id==0){
+                model.addAttribute("errMsg", "缺少参数");
+                return "common/error";
+            }
+            ArticleTable article = session.get(ArticleTable.class,id);
+            model.addAttribute("article", article);
+            model.addAttribute("catList", catList);
+            System.out.println(article);
+            //<fmt:formatDate value="${dateValue}" pattern="yyyy年MM月dd日 HH:mm"/>
+        }finally {
+            session.close();
+            System.out.println("end----------------!!!!!!!!");
+        }
         return "detail";
     }
 
