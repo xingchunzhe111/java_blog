@@ -147,6 +147,51 @@ public class IndexController {
         return "detail";
     }
 
+    @RequestMapping("/search")
+    public String search(HttpServletRequest request, Model model, @RequestParam(name = "title", required = false, defaultValue = "1")int page){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //通过SessionFactory 获取 Session
+        Session session = sessionFactory.openSession();
+        try{
+            List catList = session.createCriteria(CategoryTable.class)
+                    .add(Restrictions.eq("is_del",0))
+                    .list();
+
+            String title = request.getParameter("title");
+            System.out.println("title:"+title);
+
+            //查某一个栏目下面的所有文章
+            int pageSize = 10;
+            int offset = (page-1)*pageSize;
+
+            //String title = "";
+            if(title.equals("")){
+                model.addAttribute("errMsg", "缺少参数");
+                return "common/error";
+            }
+
+            List articleList = session.createCriteria(ArticleTable.class)
+                    .add(Restrictions.like("article_title",title))
+                    .setFirstResult(offset)
+                    .setMaxResults(pageSize)
+                    .list();
+
+            Query query = session.createQuery("select count(*) from ArticleTable where article_title like '%"+title+"%' ");
+            Long  count = (Long) query.getSingleResult();
+
+            int l = (int) (count/pageSize);
+            int maxPage = l==0 ? 1 : l+1;
+
+            model.addAttribute("catList", catList);
+            model.addAttribute("articleList", articleList);
+            model.addAttribute("maxPage", maxPage);
+            model.addAttribute("page", page);
+            model.addAttribute("count", count);
+        }finally {
+            session.close();
+        }
+        return "search";
+    }
 
 
 
