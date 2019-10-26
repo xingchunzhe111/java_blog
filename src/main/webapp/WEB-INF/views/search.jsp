@@ -73,7 +73,7 @@
                             </a>
                         </c:when>
                         <c:otherwise>
-                            <a href="/?page=${page-1}">
+                            <a href="/search?title=${title}&page=${page-1}">
                                 <span class="page">‹‹</span>
                             </a>
                         </c:otherwise>
@@ -81,7 +81,7 @@
                     <span class="page now-page">${page}</span>
                     <c:choose>
                         <c:when test="${page < maxPage}">
-                            <a href="/?page=${page+1}">
+                            <a href="/search?title=${title}&page=${page+1}">
                                 <span class="page">››</span>
                             </a>
                         </c:when>

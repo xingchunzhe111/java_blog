@@ -105,13 +105,9 @@
                 <dt class="function_t">站内搜索</dt>
                 <dd class="function_c">
                     <div>
-                        <form method="get" target="_blank" action="https://www.baidu.com/baidu">
-                            <input type="text" name="word" size="12" id="s">
+                        <form method="get" target="_blank" action="/search">
+                            <input type="text" name="title" size="12" id="s">
                             <input type="submit" value="提交" name="btnG" id="searchsubmit">
-                            <input name="ie" type="hidden" value="utf-8">
-                            <input name="tn" type="hidden" value="bds"> <input name="cl" type="hidden" value="3">
-                            <input name="ct" type="hidden" value="94749616">
-                            <input name="si" type="hidden" value="lusongsong.com">
                         </form>
                     </div>
                 </dd>

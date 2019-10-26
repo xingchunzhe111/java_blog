@@ -25,5 +25,6 @@
         <!--<mapping resource="com/my/blog/model/table/CategoryTable.hb.xml"/>-->
         <mapping class="com.my.blog.model.table.CategoryTable"/>
         <mapping class="com.my.blog.model.table.ArticleTable"/>
+        <mapping class="com.my.blog.model.table.UsersTable"/>
     </session-factory>
 </hibernate-configuration>

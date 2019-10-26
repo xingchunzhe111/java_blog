@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 @Controller
 //前台首页控制器
 public class IndexController {
@@ -41,11 +42,12 @@ public class IndexController {
             //当前页
             //计算总数
 
-            Query query = session.createQuery("select count(*) from ArticleTable ");
+            Query query = session.createQuery("select count(*) from ArticleTable where status=1 ");
             Long count = (Long) query.getSingleResult();
 
-            int l = (int) (count/pageSize);
-            int maxPage = l==0 ? 1 : l+1;
+            //如何封装函数
+            double l = ( (double) count/(double) pageSize);
+            int maxPage = (int) Math.ceil(l);
 
             //热门文章
             List hotList = session.createCriteria(ArticleTable.class)
@@ -108,8 +110,8 @@ public class IndexController {
             Query query = session.createQuery("select count(*) from ArticleTable where cid ="+Integer.toString(cid)+"");
             Long  count = (Long) query.getSingleResult();
 
-            int l = (int) (count/pageSize);
-            int maxPage = l==0 ? 1 : l+1;
+            double l = ( (double) count/(double) pageSize);
+            int maxPage = (int) Math.ceil(l);
 
             model.addAttribute("catList", catList);
             model.addAttribute("articleList", articleList);
@@ -148,7 +150,7 @@ public class IndexController {
     }
 
     @RequestMapping("/search")
-    public String search(HttpServletRequest request, Model model, @RequestParam(name = "title", required = false, defaultValue = "1")int page){
+    public String search(HttpServletRequest request, Model model, @RequestParam(name = "page", required = false, defaultValue = "1")int page){
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         //通过SessionFactory 获取 Session
         Session session = sessionFactory.openSession();
@@ -171,17 +173,19 @@ public class IndexController {
             }
 
             List articleList = session.createCriteria(ArticleTable.class)
-                    .add(Restrictions.like("article_title",title))
+                    .add(Restrictions.like("article_title","%"+title+"%"))
                     .setFirstResult(offset)
                     .setMaxResults(pageSize)
                     .list();
-
+            System.out.println("title:"+articleList);
             Query query = session.createQuery("select count(*) from ArticleTable where article_title like '%"+title+"%' ");
             Long  count = (Long) query.getSingleResult();
 
-            int l = (int) (count/pageSize);
-            int maxPage = l==0 ? 1 : l+1;
+            double l = ( (double) count/(double) pageSize);
+            int maxPage = (int) Math.ceil(l);
+            System.out.println("maxPage:"+maxPage);
 
+            model.addAttribute("title", title);
             model.addAttribute("catList", catList);
             model.addAttribute("articleList", articleList);
             model.addAttribute("maxPage", maxPage);

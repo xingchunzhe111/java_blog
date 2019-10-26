@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+    用于映射UsersEntity实体类,对应数据库中users表
+-->
+<hibernate-mapping package="com.my.blog.model.table">
+    <class name="UsersTable" table="blog_category">
+        <!--属性id,映射表里的字段id-->
+        <id name="uid" type="java.lang.Integer" column="uid">
+            <generator class="native"></generator><!-- class指的表的主键对应生成的类 (increment自增) -->
+        </id>
+        <property name="username"  type="java.lang.String"  column="username"></property>
+        <property name="password" type="java.lang.Integer" column="password"></property>
+    </class>
+</hibernate-mapping>
