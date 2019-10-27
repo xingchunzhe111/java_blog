@@ -2,6 +2,7 @@ package com.my.blog.controller;
 
 import com.my.blog.common.Resp.RetResponse;
 import com.my.blog.common.Resp.RetResult;
+import com.my.blog.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +30,10 @@ public class LoginController {
     @ResponseBody
     @RequestMapping("/login/do-login")
     public RetResult doLogin(HttpServletRequest request){
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        //通过SessionFactory 获取 Session
+        Session session = sessionFactory.openSession();
         try{
-            SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-            //通过SessionFactory 获取 Session
-            Session session = sessionFactory.openSession();
-
             //验证用户名和密码
             String password = request.getParameter("password");
             if(StringUtils.isEmpty(password)){
@@ -42,8 +43,7 @@ public class LoginController {
             if(StringUtils.isEmpty(username)){
                 return RetResponse.makeErrRsp("错误的，必须填写用户名");
             }
-            Query  q = session.createQuery("select t.password from UsersTable t where t.username='"+username+"'");
-            Object o = q.uniqueResult();
+            Object o = User.getFieldValue(session,username);
             if(StringUtils.isEmpty(o)){
                 System.out.println("jinrul");
                 return RetResponse.makeErrRsp("未发现该用户名");
@@ -51,18 +51,40 @@ public class LoginController {
 
             String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
             if(!md5Password.equals(o)){
-                session.close();
                 return RetResponse.makeRsp(123,"密码错误");
             }
+            //登录处理
+            HttpSession sessionReq = request.getSession();
+            sessionReq.setAttribute("uid", 1);
 
             Map<String,String> map=new HashMap<>();
             map.put("url", "/admin/index");
-            session.close();
             return RetResponse.makeRsp(0,"ok",map);
         }catch (Exception e){
-            //System.out.println("eeeeeeeeeeeeeeeeeeeeeeee");
-            //System.out.println(e);
-            return RetResponse.makeRsp(123,"错误请求:"+e.getMessage()+"---"+e.getLocalizedMessage());
+            return RetResponse.makeRsp(123,"错误请求:"+e.getMessage());
+        }finally {
+            session.close();
+            sessionFactory.close();
         }
     }
+
+    @ResponseBody
+    @RequestMapping("/login/logout")
+    public RetResult logout(HttpServletRequest request){
+        try{
+            HttpSession session = request.getSession();
+
+            // 将用户信息从session中删除
+            session.removeAttribute("uid");
+            Object uid = session.getAttribute("uid");
+            if (uid != null) {
+                return RetResponse.makeRsp(123,"登出失败");
+            }
+            return RetResponse.makeRsp(0,"ok");
+        }catch (Exception e){
+            return RetResponse.makeRsp(123,"错误请求:"+e.getMessage());
+        }
+    }
+
+
 }

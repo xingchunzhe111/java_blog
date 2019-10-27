@@ -1,4 +1,4 @@
-package com.my.blog.model.table;
+package com.my.blog.model.bean;
 
 
 import javax.persistence.*;

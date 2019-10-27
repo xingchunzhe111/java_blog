@@ -2,9 +2,8 @@ package com.my.blog.controller.Admin;
 
 import com.my.blog.common.Resp.RetResponse;
 import com.my.blog.common.Resp.RetResult;
-import com.my.blog.controller.AdminController;
 import com.my.blog.model.Article;
-import com.my.blog.model.table.ArticleTable;
+import com.my.blog.model.bean.ArticleTable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

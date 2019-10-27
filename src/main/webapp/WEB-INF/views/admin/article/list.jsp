@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
+<a class="btn btn-default logout-dom" href="javascript:" role="button">注销登录</a>
 <div class="row" style="margin-top: 150px;">
     <div class="col-md-10 col-md-offset-1">
         <a class="btn btn-default add-article-dom" href="javascript:" role="button">添加</a>
@@ -167,6 +168,20 @@
                 window.location.reload();
             },'json');
         });
+        body.on("click",".logout-dom",function(){
+            var url = "/login/logout";
+            var data  = {};
+            $.post(url,data,function(sta){
+                if(sta.code!=0){
+                    alert(sta.msg);
+                    return false;
+                }
+                alert("登出成功");
+                window.location.href = "/login/index";
+                return true;
+            },'json');
+        });
+
     })
 </script>
 

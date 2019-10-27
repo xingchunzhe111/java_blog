@@ -1,8 +1,8 @@
 package com.my.blog.controller;
 
 import com.my.blog.model.base.CategoryBase;
-import com.my.blog.model.table.ArticleTable;
-import com.my.blog.model.table.CategoryTable;
+import com.my.blog.model.bean.ArticleTable;
+import com.my.blog.model.bean.CategoryTable;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

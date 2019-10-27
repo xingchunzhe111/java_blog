@@ -2,11 +2,8 @@ package com.my.blog.controller.Admin;
 
 import com.my.blog.common.Resp.RetResponse;
 import com.my.blog.common.Resp.RetResult;
-import com.my.blog.controller.AdminController;
-import com.my.blog.model.Article;
 import com.my.blog.model.Category;
-import com.my.blog.model.table.ArticleTable;
-import com.my.blog.model.table.CategoryTable;
+import com.my.blog.model.bean.CategoryTable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +43,6 @@ public class AdminCategoryController{
                 .setMaxResults(pageSize)
                 .addOrder(Order.desc("id"))
                 .list();
-        System.out.println(categoryList);
         model.addAttribute("categoryList",categoryList);
         return "admin/category/list";
     }

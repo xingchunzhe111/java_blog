@@ -1,7 +1,7 @@
 package com.my.blog.model;
 
 import com.my.blog.model.base.CategoryBase;
-import com.my.blog.model.table.CategoryTable;
+import com.my.blog.model.bean.CategoryTable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
