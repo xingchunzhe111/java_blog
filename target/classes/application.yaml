@@ -10,6 +10,8 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart: {max-request-size: 100MB, max-file-size: 100MB } # max-request-size上传文件总的最大值, multipart.max-file-size单个文件的最大值
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,3 +21,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+file:
+  staticAccessPath: /static/upload/img/** # 静态资源对外暴露的访问路径
+  uploadFolder: D:/appSync/java/blog/src/main/resources/static/upload/ #文件上传目录（注意Linux和Windows上的目录结构不同）

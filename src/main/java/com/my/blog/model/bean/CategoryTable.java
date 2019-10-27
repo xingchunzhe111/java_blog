@@ -14,6 +14,7 @@ public class CategoryTable implements Serializable {
     private String title;
     private Integer is_del;
     private String time;
+    private String icon;
 
     @Override
     public String toString() {
@@ -23,6 +24,14 @@ public class CategoryTable implements Serializable {
                 ", is_del=" + is_del +
                 ", time='" + time + '\'' +
                 '}';
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public int getId() {

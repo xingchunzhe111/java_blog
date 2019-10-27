@@ -6,7 +6,6 @@ import com.my.blog.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
@@ -63,6 +62,7 @@ public class LoginController {
         }catch (Exception e){
             return RetResponse.makeRsp(123,"错误请求:"+e.getMessage());
         }finally {
+            System.out.println("关闭session");
             session.close();
             sessionFactory.close();
         }

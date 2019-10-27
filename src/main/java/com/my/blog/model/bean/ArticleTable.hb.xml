@@ -5,7 +5,7 @@
 <!--
     用于映射UsersEntity实体类,对应数据库中users表
 -->
-<hibernate-mapping package="com.my.blog.model.table">
+<hibernate-mapping package="com.my.blog.model.bean">
     <class name="ArticleTable" table="blog_article">
         <!--属性id,映射表里的字段id-->
         <id name="id" type="java.lang.Integer" column="id">

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +76,9 @@ public class AdminCategoryController{
         Category.addCategory(title);
         return RetResponse.makeRsp(0,"ok");
     }
+
+
+
     //修改文章
     @ResponseBody
     @RequestMapping("/admin/category/edit-category")
