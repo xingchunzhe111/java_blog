@@ -7,5 +7,9 @@
 </head>
 <body>
 这里是后台首页
+<br>
+<a href="/admin/article/list">文章列表</a>
+<br>
+<a href="/admin/category/list">栏目列表</a>
 </body>
 </html>

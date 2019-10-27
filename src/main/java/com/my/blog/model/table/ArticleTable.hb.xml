@@ -9,7 +9,7 @@
     <class name="ArticleTable" table="blog_article">
         <!--属性id,映射表里的字段id-->
         <id name="id" type="java.lang.Integer" column="id">
-            <generator class="native"></generator><!-- class指的表的主键对应生成的类 (increment自增) -->
+            <generator class="increment"></generator><!-- class指的表的主键对应生成的类 (increment自增) -->
         </id>
         <property name="article_title"  type="java.lang.String"  column="article_title"></property>
         <property name="article_desc" type="java.lang.Integer" column="article_desc"></property>

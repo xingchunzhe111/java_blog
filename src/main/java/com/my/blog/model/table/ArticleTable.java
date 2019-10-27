@@ -60,9 +60,9 @@ public class ArticleTable implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //public void setId(int id) {
+    //    this.id = id;
+    //}
 
     public String getArticle_title() {
         return article_title;

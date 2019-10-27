@@ -2,25 +2,18 @@ package com.my.blog.controller;
 
 import com.my.blog.common.Resp.RetResponse;
 import com.my.blog.common.Resp.RetResult;
-import com.my.blog.model.table.ArticleTable;
-import com.my.blog.model.table.CategoryTable;
-import com.my.blog.model.table.UsersTable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -63,7 +56,7 @@ public class LoginController {
             }
 
             Map<String,String> map=new HashMap<>();
-            map.put("url", "/admin/article");
+            map.put("url", "/admin/index");
             session.close();
             return RetResponse.makeRsp(0,"ok",map);
         }catch (Exception e){
